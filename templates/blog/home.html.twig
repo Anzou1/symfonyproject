@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h1 class="display-4 ">{{ title }}</h1>
+{#{{ }} -> double accolade, ce que l'on appel l'interpolation #}
+
+{% if age > 18 %}
+
+<p>Tu es majeur</p>
+
+{% else %}
+
+<p>tu es mineur </p>
+
+{% endif %}
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore necessitatibus eum iure, ullam repellendus numquam itaque velit excepturi facere quia quod qui sunt suscipit unde officia nesciunt maiores ab sit.
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores veniam quidem officiis dolore odio dolor architecto aperiam. Delectus magnam rerum ducimus itaque repellat facilis ab nisi dolorum illum, odit laudantium?
+
+{% endblock %}
