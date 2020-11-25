@@ -7,64 +7,29 @@
 <h1 class="display-4 ">Cinema</h1>
 
 <div class="row">
+    {# la boucle fro() permet de passer en revue les articles sélectionnés en bdd et envoyé par le controller . data est une variable de reception qui receptionne un article par tour de boucle, nous pouvons nommer cette variable comme nous le souhaitons. #}
+    {% for data in articles %}
+    
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-        <img src="https://picsum.photos/200/300" alt="image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        {# on pioche ds data avec le '.' afin d'afficher l'image, le titre.. #}
+        <img src="{{ data.image }}" alt="image">
+        <h5 class="text-center">{{ data.title }}</h5>
+        <div class="card-body">           
+         {{ data.content|slice(0,5) }}...
+          {# raw est un filtre twig permettant d'échapper les balise#}
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              
-              <a href="{{ path('blog_show')}}" class="btn btn-dark ">Voir plus</a>
+                <a href="{{ path('blog_show', {'id': data.id }) }}" class="btn btn-dark ">Voir plus</a>
             </div>
-           
+            <small class="text-muted">{{ data.createdAt|date('d/m/Y') }} à {{ data.createdAt|date('H:i:s') }}</small>
+            {# data.createdAt renvoi un obje datetime que nous ne pouvons pas convertir en chaine de caractères. date() est un filtre twig permettant d'afficher la date et l'heure. #}
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://picsum.photos/200/300" alt="image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <a href="{{ path('blog_show')}}" class="btn btn-dark ">Voir plus</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://picsum.photos/200/300" alt="image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <a href="{{ path('blog_show')}}" class="btn btn-dark ">Voir plus</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://picsum.photos/200/300" alt="image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <a href="{{ path('blog_show')}}" class="btn btn-dark ">Voir plus</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+    
 </div>
 
 {% endblock %}
