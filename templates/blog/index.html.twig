@@ -16,8 +16,8 @@
         <img src="{{ data.image }}" alt="image">
         <h5 class="text-center">{{ data.title }}</h5>
         <div class="card-body">           
-         {{ data.content|slice(0,5) }}...
-          {# raw est un filtre twig permettant d'échapper les balise#}
+         {{ data.content|striptags|slice(0,15) }}...
+          {# raw ou striptags est un filtre twig permettant d'échapper les balise#}
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <a href="{{ path('blog_show', {'id': data.id }) }}" class="btn btn-dark ">Voir plus</a>

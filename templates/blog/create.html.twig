@@ -4,7 +4,7 @@
 
 <h1 class="display-4 text-center my-4">Créer un article</h1>
 
-<form method="post">
+{# <form method="post">
   <div class="form-group">
         <label for="title">title</label>
         <input type="text" class="form-control" id="title" name="title">
@@ -20,6 +20,25 @@
     </div>
 
   <button type="submit" class="btn btn-primary">Enregistrer</button>
-</form>
+</form> #}
+
+{{ form_start(formArticle, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
+
+    {{ form_row(formArticle.title, {'attr': {'placeholder': 'Titre de l\'article'} }) }}
+    {{ form_row(formArticle.content) }}
+    {{ form_row(formArticle.image, {'attr': {'placeholder': 'Url de l\'image'} }) }}
+
+    <button type="submit" class="btn btn-secondary">
+    {% if editMode %}
+        Enregistrer les modifications
+    {% else %}
+    Enregistrer l'article
+
+    {% endif %}
+    </button>
+
+
+
+{{ form_end(formArticle) }}
 
 {% endblock %}

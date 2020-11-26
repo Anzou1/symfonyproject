@@ -12,9 +12,10 @@
           <div class="card-body">
             <p class="card-text">{{ article.title|raw }}</p>
             <div class="d-flex justify-content-between align-items-center">
-              {{ article.content }}
-              {{ article.content }}
+              {{ article.content|raw }}
+              <p>{{ article.content|raw }}</p>
               <small class="text-muted">{{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i:s') }}</small>
+              <small><a href="{{ path('blog_edit', {'id': article.id}) }}" class="btn btn-dark ml-2 mb-2">EDIT</a></small>
               
             </div>
           </div>
