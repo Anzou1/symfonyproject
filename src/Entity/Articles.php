@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,6 +20,12 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "le titre est trop court",
+     *      maxMessage = "le titre est trop long"
+     * )
      */
     private $title;
 
@@ -34,6 +41,8 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url(
+     *    message = "The url '{{ value }}' is not a valid url")
      */
     private $image;
 
