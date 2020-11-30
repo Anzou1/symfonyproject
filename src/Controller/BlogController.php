@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Articles;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,6 +84,7 @@ class BlogController extends AbstractController
                      ->getForm();
         */
         $form = $this->createForm(ArticleType::class, $article);
+       
 
         $form->handleRequest($request);
         dump($request);
@@ -109,16 +112,55 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
-    public function show(Articles $article): Response{
+    public function show(Articles $article, Request $request, EntityManagerInterface $manager): Response{
 
         // on appel le repository de la classe Article afin de selectionner dans la table Article.
         //$repo = $this->getDoctrine()->getRepository(Articles::class);
 
         //$article = $repo->find($id);
-        dump($article);
+        $comment = new Comment;
+        dump($request);
+        $formComment = $this->createForm(CommentType::class, $comment);
+
+        
+
+        $formComment->handleRequest($request);
+       
+
+        if($formComment->isSubmitted() && $formComment->isvalid()){
+
+            if(!$comment->getId()){
+
+                $comment->setCreatedAt(new \DateTime());
+                $comment->setArticle($article);
+            }
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            $this->addFlash('success', "Lecommentaire a bien été posté");
+
+            return $this->redirectToRoute('blog_show', [
+                'id' => $article->getId()
+            ]);
+           
+
+            
+        }      
+        
+        return $this->render('blog/show.html.twig', [
+            'article' => $article,
+            'formComment' => $formComment->createView()
+            ]);
+
+
+       
+    
+        
 
         return $this->render('blog/show.html.twig', [
-            'article' => $article// Nous envoyons sur le template les articles selectionnés en bdd
+            'formComment' => $formComment->createView(),
+            'article' => $comment// Nous envoyons sur le template les articles selectionnés en bdd
         ]);
     }
 
