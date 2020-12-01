@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Blog symfony | AdminController!{% endblock %}
+
+{% block body %}
+
+<h1 class="display-4 text-center my-4">Back office
+</h1>
+
+<h4 class="text-center">Bienvenue <span class="text-info">{{ app.user.username }} dans votre back office</h4>
+
+<div class="text-center">
+<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des articles</a>
+<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des categorie</a>
+<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des commentaire</a>
+<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des membres</a>
+</div>
+{% endblock %}

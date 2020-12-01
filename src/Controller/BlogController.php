@@ -138,7 +138,7 @@ class BlogController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
-            $this->addFlash('success', "Lecommentaire a bien été posté");
+            $this->addFlash('success', "Le commentaire a bien été posté");
 
             return $this->redirectToRoute('blog_show', [
                 'id' => $article->getId()
