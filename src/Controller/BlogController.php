@@ -119,7 +119,7 @@ class BlogController extends AbstractController
 
         //$article = $repo->find($id);
         $comment = new Comment;
-        dump($request);
+        
         $formComment = $this->createForm(CommentType::class, $comment);
 
         
@@ -131,8 +131,15 @@ class BlogController extends AbstractController
 
             if(!$comment->getId()){
 
+                $username = $this->getUser()->getUsername();
+                 //getUser()permet de récuperer tt les informations de l'utilisateur, c'est une fonction prédéfinies.
+
+                $comment->setAuthor($username);
                 $comment->setCreatedAt(new \DateTime());
                 $comment->setArticle($article);
+               
+                
+                
             }
 
             $manager->persist($comment);
