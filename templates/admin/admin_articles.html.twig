@@ -2,9 +2,67 @@
 
 {% block title %}Mon Blog symfony | Gestion des articles{% endblock %}
 
-<h1 class="display-4 text-center my-4">Back office | Gestion des articles</h1>
+
 
 {% block body %}
+<h1 class="display-4 text-center my-4">Back office | Gestion des articles <small><a href="{{ path('admin_new_article') }}" alt="" class="btn btn-primary">New article</a></small></h1>
 
+    <h2 class="text-center">Liste des articles</h2>
+
+    {% for message in app.flashes('success') %}
+
+    <div class="bg-success text-white text-center col-md-3 mx-auto rounded mb-3">
+        {{ message }}
+        </div>
+
+        {% endfor %}
+
+    <table class="table table-dark table-striped table-bordered text-center">
+
+       
+            <tr>
+             {% for data in colonnes %}
+
+             {% if data == 'createdAt' %}
+
+                <th>DATE</th>
+
+             {% else %}
+
+                <th>{{ data|upper }}</th>
+                 
+             {% endif %}
+
+
+             {% endfor %}
+
+             <th>CATEGORIE</th>
+             <th>EDIT</th>
+             <th>SUPP</th>
+
+                
+            </tr>    
+
+            {% for admin_article in admin_articles %}
+
+                <tr>
+                    <td>{{ admin_article.id }}</td>
+                    <td>{{ admin_article.title }}</td>
+                    <td>{{ admin_article.content|striptags }}</td>
+                    <td>{{ admin_article.createdAt|date('d/m/Y à H:i:s') }}</td>
+                    <td><img src="{{ admin_article.image }}" alt="{{ admin_article.title }}"></td>
+                    <td>{{ admin_article.category.title }}</td>
+
+                    <td><a href="{{ path('admin_edit_article', {'id': admin_article.id }) }}" class="btn btn-primary text-white"><i class="fas fa-edit fa-1x"></i></a></td>
+                    <td><a href="" class="btn btn-danger text-white"><i class="fas fa-trash fa-1x"></i></a></td>
+
+                    
+                </tr>
+
+                
+            {% endfor %}
+    
+
+    </table>
 
 {% endblock %}
