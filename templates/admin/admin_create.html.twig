@@ -6,7 +6,14 @@
 
 {% block body %}
 
-<h1 class="display-4 text-center my-4">Back office | Création Article</h1>
+<h1 class="display-4 text-center my-4">Back office | 
+ {% if editMode %}
+    Modification Article
+ {% else %}
+    Création Article
+ {% endif %}
+
+<small><a href="{{ path('admin_articles') }}" alt="" class="btn btn-primary">Retour</a></small></h1>
 
 
 
@@ -17,9 +24,14 @@
     {{ form_row(formArticle.content, {'label': "Contenu de l\'article"}) }}
     {{ form_row(formArticle.image, {'attr': {'placeholder': 'Url de l\'image'} }) }}
    
+    {% if editMode %}
 
-    <button type="submit" class="btn btn-secondary">Enregistrer l'article</button>
+        <button type="submit" class="btn btn-secondary">Modifier l'article</button>
+    {% else %}
 
+        <button type="submit" class="btn btn-secondary">Enregistrer l'article</button>
+        
+   {% endif %}
 
 
 {{ form_end(formArticle) }}

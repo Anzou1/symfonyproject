@@ -48,13 +48,13 @@
                 <tr>
                     <td>{{ admin_article.id }}</td>
                     <td>{{ admin_article.title }}</td>
-                    <td>{{ admin_article.content|striptags }}</td>
+                    <td>{{ admin_article.content|striptags|slice(0,30) }}</td>
                     <td>{{ admin_article.createdAt|date('d/m/Y à H:i:s') }}</td>
-                    <td><img src="{{ admin_article.image }}" alt="{{ admin_article.title }}"></td>
+                    <td><img src="{{ admin_article.image }}" alt="{{ admin_article.title }}" style="width: 200px"></td>
                     <td>{{ admin_article.category.title }}</td>
 
                     <td><a href="{{ path('admin_edit_article', {'id': admin_article.id }) }}" class="btn btn-primary text-white"><i class="fas fa-edit fa-1x"></i></a></td>
-                    <td><a href="" class="btn btn-danger text-white"><i class="fas fa-trash fa-1x"></i></a></td>
+                    <td><a href="{{ path('admin_delete_article', {'id': admin_article.id }) }}" class="btn btn-danger text-white" onclick="return(confirm('voulez vous vraiment supprimer cet article ?'))"><i class="fas fa-trash fa-1x"></i></a></td>
 
                     
                 </tr>
