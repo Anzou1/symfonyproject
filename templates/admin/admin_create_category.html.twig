@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Blog symfony | Gestion des  Catégories{% endblock %}
+
+
+
+{% block body %}
+
+<h1 class="display-4 text-center my-4">Back office | 
+    {% if editMode %}
+        Modification catégorie
+    {% else %}
+        Création Catégories 
+    {% endif %}
+
+<small><a href="{{ path('admin_category') }}" alt="" class="btn btn-primary">Retour</a></small></h1>
+
+
+
+{{ form_start(formCategory, {'attr': {'class': 'col-md-5 mx-auto'}}) }}
+
+     {{ form_row(formCategory.title) }}
+     {{ form_row(formCategory.description, {'attr': {'rows': 10}}) }}
+    
+   {% if editMode %}
+       <button type="submit" class="btn btn-secondary">Modifier la Categorie</button>
+   {% else %}
+       <button type="submit" class="btn btn-secondary">Enregistrer la Categorie</button>
+   {% endif %}
+
+    
+
+
+
+{{ form_end(formCategory) }}
+
+{% endblock %}
