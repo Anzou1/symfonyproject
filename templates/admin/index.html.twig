@@ -10,9 +10,9 @@
 <h4 class="text-center">Bienvenue <span class="text-info"> dans votre back office {{ app.user.username }}</h4>
 
 <div class="text-center">
-<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des articles</a>
-<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des categorie</a>
-<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des commentaire</a>
-<a href="" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des membres</a>
+<a href="{{ path('admin_articles') }}" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des articles</a>
+<a href="{{ path('admin_category') }}" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des categorie</a>
+<a href="{{ path('admin_comments') }}" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des commentaire</a>
+<a href="{{ path('admin_users') }}" class="col-md-6 offset -md-3 btn btn-dark p-3 mb-2">Gestion des membres</a>
 </div>
 {% endblock %}

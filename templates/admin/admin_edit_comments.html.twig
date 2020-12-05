@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Blog symfony | Gestion des Commentaires{% endblock %}
+
+
+
+{% block body %}
+
+<h1 class="display-4 text-center my-4">Back office | 
+
+    Modification Commentaires
+
+    {{ form_start(formCom, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
+
+     {{ form_row(formCom.author, {'label': "Auteur"}) }}
+      {{ form_row(formCom.article, {'label': "Titre Article"}) }} 
+    {{ form_row(formCom.content, {'label': "Contenu du commentaire", 'attr':{'rows':15} }) }}
+     {{ form_row(formCom.createdAt, {'label': "Date de création"}) }}
+    
+   
+    
+
+        <button type="submit" class="btn btn-secondary">Modifier le commentaire</button>
+    
+
+      
+
+
+{{ form_end(formCom) }}
+
+{% endblock %}
+ 

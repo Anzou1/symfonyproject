@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} 
+Mon Blog symfony | Gestion des commentaire 
+{% endblock %}
+
+
+
+{% block body %}
+
+        <h1 class="display-4 text-center my-4">Back office | Gestion des commentaires</h1>
+
+         {% for message in app.flashes('success') %}
+
+            <div class="bg-success text-white text-center col-md-3 mx-auto rounded mb-3">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+          <table class="table table-dark table-bordered text-center">
+
+            <tr>
+            {% for data in NomColonne %}
+
+            
+                <th>{{ data|upper }}</th>
+                
+            {% endfor %}
+                <th>Article</th>
+                <th>Edit</th>
+                <th>supp</th>
+            </tr>    
+
+            {% for cellule in cellules %}
+                <tr>
+                    <td>{{ cellule.id }}</td>
+                    <td>{{ cellule.author }}</td>
+                    <td>{{ cellule.content|striptags|slice(0,15) }}</td>
+                     <td>{{ cellule.createdAt|date('d/m/Y à H:i:s') }}</td>
+                    <td>{{ cellule.article.title}}</td>
+
+                     <td><a href="{{ path('admin_edit_comments', {'id': cellule.id }) }}" class="btn btn-primary text-white"><i class="fas fa-edit fa-1x"></i></a></td>
+                    <td><a href="{{ path('admin_delete_comment', {'id': cellule.id })}}" class="btn btn-danger text-white" onclick="return(confirm('voulez vous vraiment supprimer ce commentaire ?'))"><i class="fas fa-trash fa-1x"></i></a></td>
+
+
+
+                </tr> 
+          
+                
+            {% endfor %}
+
+             
+
+        </table>
+
+
+{% endblock %}
