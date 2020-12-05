@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Blog symfony | Gestion des  Membres</h1>{% endblock %}
+
+
+
+{% block body %}
+
+<h1 class="display-4 text-center my-4">Back office | Modification Membres</h1>
+
+{{ form_start(formUser, {'attr': {'class': 'col-md-5 mx-auto text-center'} } ) }}
+
+    {{ form_row(formUser.username, {'label': "Nom utilisateur"}) }}
+    {{ form_row(formUser.email) }}
+    {{ form_row(formUser.roles, {'label': false}) }}
+
+    <button type="submit" class="btn btn-secondary">Modifier l'utilisateur</button>
+
+{{ form_end(formUser) }}
+
+
+{% endblock %}
